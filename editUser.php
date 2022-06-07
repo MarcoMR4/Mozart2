@@ -2,8 +2,8 @@
 Proyecto: Pagina de instrumentos con PHP, MySQL y Bootstrap CRUD  (Create, read, Update, Delete) 
 Alumnos	: Marco Antonio Mercado Rodriguez y Diego Villanueva Ferreyra 
 Carrera : ISC
-Semestre: 5.to
-Grupo   : B
+Semestre: 6
+Grupo   : C
 -->
 
 <?php

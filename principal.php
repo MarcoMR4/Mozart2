@@ -28,23 +28,17 @@ if(!isset($_SESSION['username'])){
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="principal.html">Tienda de instrumentos</a>
+            <a class="navbar-brand ps-3" href="principal.html">Conservatorio Mozart</a>
             <!-- Sidebar Toggle-->
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                <div class="input-group">
-                    <input class="form-control" type="text" placeholder="Search for..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                    <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
-                </div>
-            </form>
+   
             <!-- Navbar-->
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="editUser.php">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Logout</a></li>
+                        <li><a class="dropdown-item" href="cerrar.php">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -130,41 +124,11 @@ if(!isset($_SESSION['username'])){
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-dark text-white mb-4">
-                                    <div class="card-body">Ventas</div>
-                                    <?php
-                                       $query = 'select cuentaClientes()';
-                                       $result = mysqli_query($con, $query);
-                                       if(mysqli_num_rows($result) == 0){
-                                
-                                        echo "<script>
-                                        alert('No hay registros');
-                                        </script>";
-                                       }else{
-                                        $row = mysqli_fetch_assoc($result);
-                                        $resultado = $row['cuentaClientes()'];
-                                        echo  '<div class="card-body">Numero de ventas: '.$resultado.' </div>';
-                                       }
 
-                                    
-                                    ?>
-                                    
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-md-6">
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Yamaha</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="yamaha.php">Ver detalles</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row">
+                            <img src="img/principal.jpg" alt="" >
                         </div>
+                       
                       
                     </div>
                 </main>
