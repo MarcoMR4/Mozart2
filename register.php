@@ -10,7 +10,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-primary">
+    <body style="background-image:url('img/principal.jpg')">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -32,20 +32,20 @@
                                             <div class="form-group">
                                                 <label for="user" class="col-md-3 control-label">Usuario</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="usuario" placeholder="nombre de Usuario">
+                                                    <input type="text" class="form-control" name="usuario" placeholder="Nombre de Usuario">
                                                 </div>
                                             </div>
                                                 
                                             <div class="form-group">
                                                 <label for="nombres" class="col-md-3 control-label">Nombres</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="nombres" placeholder="nombres">
+                                                    <input type="text" class="form-control" name="nombres" placeholder="Nombres">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="apellidos" class="col-md-3 control-label">Apellidos</label>
                                                 <div class="col-md-9">
-                                                    <input type="text" class="form-control" name="apellidos" placeholder="apellidos">
+                                                    <input type="text" class="form-control" name="apellidos" placeholder="Apellidos">
                                                 </div>
                                             </div>
                                             <div class="form-group">

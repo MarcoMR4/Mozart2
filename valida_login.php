@@ -32,7 +32,9 @@ Grupo   : C
            $resultado = mysqli_query($con, $consulta);
    
            $filas = mysqli_num_rows($resultado);
+           
           if($filas>0){
+              //Si se encuentra un registro con los datos ingresados, se hace esto
               session_start();
               $_SESSION['username'] = $user;
               $_SESSION['password'] = $pass_sha1;
@@ -41,8 +43,10 @@ Grupo   : C
               //accesar a registro de empleados
               header("location: principal.php");
             }else{
+              //Si no se encuentra ningun registro con los datos ingresados, se hace esto
               echo "<script>
                  alert('No tienes permiso de acceder');
+                 window.location = 'index.php';
                </script>";
             }
          }   
