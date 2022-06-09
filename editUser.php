@@ -29,7 +29,7 @@ $nik = $_SESSION['username'];
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Pagina principal</title>
+        <title>Editar datos</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -68,9 +68,9 @@ $nik = $_SESSION['username'];
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Página principal</h1>
+                        <h1 class="mt-4">Usuario</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Página principal</li>
+                            <li class="breadcrumb-item active">Editar datos de usuario</li>
                         </ol>
 
                         <?php

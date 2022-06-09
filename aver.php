@@ -10,7 +10,6 @@ if(!isset($_SESSION['username'])){
 	session_destroy();
 	die();
 }
-$nik = $_SESSION['username'];
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +20,7 @@ $nik = $_SESSION['username'];
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Pagina principal</title>
+        <title>Agregar clientes</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -43,8 +42,36 @@ $nik = $_SESSION['username'];
                 </li>
             </ul>
         </nav>
+                        <?php
+                        if(isset($_POST['add'])){
+                
+                            $nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));//Escanpando caracteres 
+                            $descripcion	 = mysqli_real_escape_string($con,(strip_tags($_POST["descripcion"],ENT_QUOTES)));//Escanpando caracteres  
+                            $existencia	     = mysqli_real_escape_string($con,(strip_tags($_POST["existencia"],ENT_QUOTES)));//Escanpando caracteres 
+                            $marca	         = mysqli_real_escape_string($con,(strip_tags($_POST["marca"],ENT_QUOTES)));//Escanpando caracteres 
+                            $modelo 	     = mysqli_real_escape_string($con,(strip_tags($_POST["modelo"],ENT_QUOTES)));//Escanpando caracteres 
+                            $precio		     = mysqli_real_escape_string($con,(strip_tags($_POST["precio"],ENT_QUOTES)));//Escanpando caracteres 
+                            
+                            
+                            $cek = mysqli_query($con, "SELECT * FROM producto WHERE modelo='$modelo'");
+                            if(mysqli_num_rows($cek) == 0){
+                                    $insert = mysqli_query($con, "INSERT INTO producto(nombre, descripcion, existencia, marca, modelo, precio)
+                                                VALUES('$nombre','$descripcion','$existencia','$marca','$modelo','$precio')") or die(mysqli_error());
+                                    if($insert){
+                                        echo '<div class="alert alert-success alert-dismissable">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
+                                        header("location: productos.php");
+                                    }else{
+                                        echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. No se pudo guardar los datos !</div>';
+                                    }
+                            }else{
+                                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. RFC exite!</div>';
+                            }
+                            
+                        }
+                        ?>
         <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
+        <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                     <div class="sb-sidenav-menu">
                         <div class="nav">
@@ -53,75 +80,84 @@ $nik = $_SESSION['username'];
                                 <div class="sb-nav-link-icon"></div>
                                 Principal
                             </a>
+                        
+                            <div class="sb-sidenav-menu-heading">Operaciones</div>
+                            <a class="nav-link" href="comprar.php">
+                                <div class="sb-nav-link-icon"></div>
+                                Comprar instrumento
+                            </a>
+                            <a class="nav-link" href="clientes.php">
+                                <div class="sb-nav-link-icon"></div>
+                                Clientes
+                            </a>
+                            <a class="nav-link" href="productos.php">
+                                <div class="sb-nav-link-icon"></div>
+                                Productos
+                            </a>
+                            <a class="nav-link" href="compras.php">
+                                <div class="sb-nav-link-icon"></div>
+                                Mostrar compras
+                            </a>
                         </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Ingresado como:</div>
+                        <?php echo '<p>'.$_SESSION['username'].'</p>';?>
                     </div>
                 </nav>
             </div>
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Página principal</h1>
+                        <h1 class="mt-4">Clientes</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Página principal</li>
+                            <li class="breadcrumb-item active">Agregar clientes</li>
                         </ol>
 
-                        <?php
-                        // escaping, additionally removing everything that could be (html/javascript-) code
-                        $sql = mysqli_query($con, "SELECT * FROM usuario WHERE usuario='$nik'");
-                        if(mysqli_num_rows($sql) == 0){
-                            //header("Location: index.php");
-                        }else{
-                            $row = mysqli_fetch_assoc($sql);
-                        }
-                        if(isset($_POST['save'])){
-                            $nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["nombres"],ENT_QUOTES)));//Escanpando caracteres 
-                            $apellidos	 = mysqli_real_escape_string($con,(strip_tags($_POST["apellidos"],ENT_QUOTES)));//Escanpando caracteres 
-                            $email	     = mysqli_real_escape_string($con,(strip_tags($_POST["email"],ENT_QUOTES)));//Escanpando caracteres 
-
-                            $queryE = "UPDATE usuario SET nombres='$nombre', apellidos='$apellidos', email='$email' WHERE usuario='$nik'";
-                            $update = mysqli_query($con, $queryE) or die(mysqli_error());
-                            if($update){
-                                header("location: principal.php");
-                            }else{
-                                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
-                            }
-                        }
-                        
-                        if(isset($_GET['pesan']) == 'sukses'){
-                            echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Los datos han sido guardados con éxito.</div>';
-                        }
-                        ?>
                         <form class="form-horizontal" action="" method="post">
-                            <div class="text-center">
-                                    <img src="img/Sample_User_Icon.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
-                                    id="imagen" width="200px" alt="profile">
-                                    </div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label" >Nombres</label>
+                        <div class="form-group">
+                                <label class="col-sm-3 control-label">Nombre</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="nombres" value="<?php echo $row ['nombres']; ?>" class="form-control" placeholder="nombres" required>
+                                    <input type="text" name="nombre"  class="form-control" placeholder="Nombre" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Apellidos</label>
+                                <label class="col-sm-3 control-label">Descripcion</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="apellidos" value="<?php echo $row ['apellidos']; ?>" class="form-control" placeholder="apellidos" required>
+                                    <input type="text" name="descripcion"  class="form-control" placeholder="Descripcion" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Existencia</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="existencia"  class="form-control" placeholder="Existencia" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Marca</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="marca" class="form-control" placeholder="Marca" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Modelo</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="modelo" class="form-control" placeholder="Modelo" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Precio</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="precio"  class="form-control" placeholder="Precio" required>
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">email</label>
-                                <div class="col-sm-3">
-                                    <input type="text" name="email" value="<?php echo $row ['email']; ?>" class="form-control" placeholder="email" required>
-                                </div>
-                            </div>
-                                
-                        
+                            
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">&nbsp;</label>
                                 <div class="col-sm-6">
-                                    <input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
-                                    <a href="principal.php" class="btn btn-sm btn-danger">Cancelar</a>
+                                    <input type="submit" name="add" class="btn btn-sm btn-primary" value="Guardar datos">
+                                    <a href="productos.php" class="btn btn-sm btn-danger">Cancelar</a>
                                 </div>
                             </div>
                         </form>
