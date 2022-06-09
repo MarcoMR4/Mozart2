@@ -59,10 +59,12 @@ $nik = $_SESSION['username'];
 				$nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["nombres"],ENT_QUOTES)));//Escanpando caracteres 
 				$apellidos	 = mysqli_real_escape_string($con,(strip_tags($_POST["apellidos"],ENT_QUOTES)));//Escanpando caracteres 
 				$email	     = mysqli_real_escape_string($con,(strip_tags($_POST["email"],ENT_QUOTES)));//Escanpando caracteres 
-				
-				$update = mysqli_query($con, "UPDATE usuario SET nombres='$nombre', apellidos='$apellidos', email='$email WHERE usuario='$nik'") or die(mysqli_error());
+
+				$queryE = "UPDATE usuario SET nombres='$nombre', apellidos='$apellidos', email='$email' WHERE usuario='$nik'";
+				echo $queryE;
+				$update = mysqli_query($con, $queryE) or die(mysqli_error());
 				if($update){
-					header("Location: principal.html");
+					header("Location: principal.php");
 				}else{
 					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
 				}
