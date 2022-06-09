@@ -24,7 +24,7 @@ values('$username','$nombres','$apellidos',SHA1('$pass'),'$email',2)";
 if($username!=null && $pass!=null){
     $resultado = mysqli_query($con, $registro);
     if($resultado){
-        echo "<br> Registro exitoso";
+        echo "<script> alert('Registro exitoso!') <script>"; 
         header("location: index.php");
     }else{
         echo "No se registro correctamente";
