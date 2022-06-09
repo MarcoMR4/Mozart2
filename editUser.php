@@ -75,7 +75,10 @@ $nik = $_SESSION['username'];
 			}
 			?>
 			<form class="form-horizontal" action="" method="post">
-			
+				<div class="text-center">
+                          <img src="img/Sample_User_Icon.png" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                           id="imagen" width="200px" alt="profile">
+                        </div>
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Nombres</label>
 					<div class="col-sm-4">
@@ -107,7 +110,6 @@ $nik = $_SESSION['username'];
 			</form>
 		</div>
 	</div>
-
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-datepicker.js"></script>
@@ -115,6 +117,6 @@ $nik = $_SESSION['username'];
 	$('.date').datepicker({
 		format: 'dd-mm-yyyy',
 	})
-	</script>
+	</script>	
 </body>
 </html>

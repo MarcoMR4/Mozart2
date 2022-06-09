@@ -37,8 +37,7 @@ if(!isset($_SESSION['username'])){
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="editUser.php">Settings</a></li>
-                        <li><a class="dropdown-item" href="cerrar.php">Logout</a></li>
+                        <li><a class="dropdown-item" href="editUser.php">Editar datos</a></li>
                     </ul>
                 </li>
             </ul>
@@ -135,12 +134,7 @@ if(!isset($_SESSION['username'])){
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                            <div>
-                                <a href="#">Privacy Policy</a>
-                                &middot;
-                                <a href="#">Terms &amp; Conditions</a>
-                            </div>
+                            <div class="text-muted">Realizado por Diego Villanueva Ferreyra y Marco Antonio Mercado Rodriguez</div>
                         </div>
                     </div>
                 </footer>
