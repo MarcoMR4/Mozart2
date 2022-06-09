@@ -1,11 +1,3 @@
-<!--
-Proyecto: Pagina de instrumentos con PHP, MySQL y Bootstrap CRUD  (Create, read, Update, Delete) 
-Alumnos	: Marco Antonio Mercado Rodriguez y Diego Villanueva Ferreyra 
-Carrera : ISC
-Semestre: 6
-Grupo   : C
--->
-
 <?php
 include("conexion.php");
 
@@ -89,10 +81,6 @@ $nik = $_SESSION['username'];
                             $queryE = "UPDATE usuario SET nombres='$nombre', apellidos='$apellidos', email='$email' WHERE usuario='$nik'";
                             $update = mysqli_query($con, $queryE) or die(mysqli_error());
                             if($update){
-								echo "<script>
-									alert('No tienes permiso de acceder');
-									window.location = 'index.php';
-								</script>";
                                 header("location: principal.php");
                             }else{
                                 echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
@@ -122,7 +110,7 @@ $nik = $_SESSION['username'];
                             </div>
                             
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Email</label>
+                                <label class="col-sm-3 control-label">email</label>
                                 <div class="col-sm-3">
                                     <input type="text" name="email" value="<?php echo $row ['email']; ?>" class="form-control" placeholder="email" required>
                                 </div>
