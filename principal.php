@@ -24,6 +24,7 @@ if(!isset($_SESSION['username'])){
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="img/mozartIcon.png" type="image/x-icon">
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -40,22 +41,18 @@ if(!isset($_SESSION['username'])){
                  </a>
                  </div>
                  <div class=" col-sm">
-             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="editUser.php">Editar datos</a></li>
-                        <li><a class="dropdown-item" href="cerrar.php">Cerrar sesión</a></li>
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="editUser.php">Editar datos</a></li>
+                                <li><a class="dropdown-item" href="cerrar.php">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
-            </div>
                 </div>
-               <div class="row">
-
             </div>
-       </div>
-           
+            </div>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">

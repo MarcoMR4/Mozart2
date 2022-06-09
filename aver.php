@@ -20,7 +20,7 @@ if(!isset($_SESSION['username'])){
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Agregar clientes</title>
+        <title>Editar clientes</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -42,34 +42,36 @@ if(!isset($_SESSION['username'])){
                 </li>
             </ul>
         </nav>
-                        <?php
-                        if(isset($_POST['add'])){
-                
-                            $nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));//Escanpando caracteres 
-                            $descripcion	 = mysqli_real_escape_string($con,(strip_tags($_POST["descripcion"],ENT_QUOTES)));//Escanpando caracteres  
-                            $existencia	     = mysqli_real_escape_string($con,(strip_tags($_POST["existencia"],ENT_QUOTES)));//Escanpando caracteres 
-                            $marca	         = mysqli_real_escape_string($con,(strip_tags($_POST["marca"],ENT_QUOTES)));//Escanpando caracteres 
-                            $modelo 	     = mysqli_real_escape_string($con,(strip_tags($_POST["modelo"],ENT_QUOTES)));//Escanpando caracteres 
-                            $precio		     = mysqli_real_escape_string($con,(strip_tags($_POST["precio"],ENT_QUOTES)));//Escanpando caracteres 
-                            
-                            
-                            $cek = mysqli_query($con, "SELECT * FROM producto WHERE modelo='$modelo'");
-                            if(mysqli_num_rows($cek) == 0){
-                                    $insert = mysqli_query($con, "INSERT INTO producto(nombre, descripcion, existencia, marca, modelo, precio)
-                                                VALUES('$nombre','$descripcion','$existencia','$marca','$modelo','$precio')") or die(mysqli_error());
-                                    if($insert){
-                                        echo '<div class="alert alert-success alert-dismissable">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
-                                        header("location: productos.php");
-                                    }else{
-                                        echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. No se pudo guardar los datos !</div>';
-                                    }
-                            }else{
-                                echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. RFC exite!</div>';
-                            }
-                            
-                        }
-                        ?>
+        <?php
+			// escaping, additionally removing everything that could be (html/javascript-) code
+			$nik = mysqli_real_escape_string($con,(strip_tags($_GET["nik"],ENT_QUOTES)));
+			$sql = mysqli_query($con, "SELECT * FROM cliente WHERE idCliente='$nik'");
+			if(mysqli_num_rows($sql) == 0){
+				//header("Location: index.php");
+			}else{
+				$row = mysqli_fetch_assoc($sql);
+			}
+			if(isset($_POST['save'])){
+				$numero		     = mysqli_real_escape_string($con,(strip_tags($_POST["idCliente"],ENT_QUOTES)));//Escanpando caracteres 
+				$nombre		     = mysqli_real_escape_string($con,(strip_tags($_POST["Nombre"],ENT_QUOTES)));//Escanpando caracteres 
+				$apellidos	 = mysqli_real_escape_string($con,(strip_tags($_POST["Apellidos"],ENT_QUOTES)));//Escanpando caracteres 
+				$telefono	 = mysqli_real_escape_string($con,(strip_tags($_POST["telefono"],ENT_QUOTES)));//Escanpando caracteres 
+				$email	     = mysqli_real_escape_string($con,(strip_tags($_POST["email"],ENT_QUOTES)));//Escanpando caracteres 
+				$domicilio	 = mysqli_real_escape_string($con,(strip_tags($_POST["Domicilio"],ENT_QUOTES)));//Escanpando caracteres 
+				$rfc	 = mysqli_real_escape_string($con,(strip_tags($_POST["RFC"],ENT_QUOTES)));//Escanpando caracteres 
+				
+				$update = mysqli_query($con, "UPDATE cliente SET Nombre='$nombre', Apellidos='$apellidos', telefono='$telefono', email='$email', Domicilio='$domicilio', RFC='$rfc' WHERE idCliente='$nik'") or die(mysqli_error());
+				if($update){
+					header("Location: clientes.php");
+				}else{
+					echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error, no se pudo guardar los datos.</div>';
+				}
+			}
+			
+			if(isset($_GET['pesan']) == 'sukses'){
+				echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Los datos han sido guardados con éxito.</div>';
+			}
+		?>
         <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
                 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
@@ -109,55 +111,56 @@ if(!isset($_SESSION['username'])){
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Clientes</h1>
+                        <h1 class="mt-4">Datos del cliente</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Agregar clientes</li>
+                            <li class="breadcrumb-item active">Editar datos</li>
                         </ol>
 
                         <form class="form-horizontal" action="" method="post">
-                        <div class="form-group">
-                                <label class="col-sm-3 control-label">Nombre</label>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Nombres</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="nombre"  class="form-control" placeholder="Nombre" required>
+                                    <input type="text" name="Nombre" value="<?php echo $row ['Nombre']; ?>" class="form-control" placeholder="Nombres" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Descripcion</label>
+                                <label class="col-sm-3 control-label">Apellidos</label>
                                 <div class="col-sm-4">
-                                    <input type="text" name="descripcion"  class="form-control" placeholder="Descripcion" required>
+                                    <input type="text" name="Apellidos" value="<?php echo $row ['Apellidos']; ?>" class="form-control" placeholder="Apellidos" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Existencia</label>
+                                <label class="col-sm-3 control-label">Teléfono</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="existencia"  class="form-control" placeholder="Existencia" required>
+                                    <input type="text" name="telefono" value="<?php echo $row ['telefono']; ?>" class="form-control" placeholder="Teléfono" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Marca</label>
+                                <label class="col-sm-3 control-label">email</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="marca" class="form-control" placeholder="Marca" required>
+                                    <input type="text" name="email" value="<?php echo $row ['email']; ?>" class="form-control" placeholder="correo" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Modelo</label>
+                                <label class="col-sm-3 control-label">Domicilio</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="modelo" class="form-control" placeholder="Modelo" required>
+                                    <input type="text" name="Domicilio" value="<?php echo $row ['Domicilio']; ?>" class="form-control" placeholder="domicilio" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Precio</label>
+                                <label class="col-sm-3 control-label">RFC</label>
                                 <div class="col-sm-3">
-                                    <input type="text" name="precio"  class="form-control" placeholder="Precio" required>
+                                    <input type="text" name="RFC" value="<?php echo $row ['RFC']; ?>" class="form-control" placeholder="RFC" required>
                                 </div>
                             </div>
                             
-                            
+                                
+                        
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">&nbsp;</label>
                                 <div class="col-sm-6">
-                                    <input type="submit" name="add" class="btn btn-sm btn-primary" value="Guardar datos">
-                                    <a href="productos.php" class="btn btn-sm btn-danger">Cancelar</a>
+                                    <input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
+                                    <a href="clientes.php" class="btn btn-sm btn-danger">Cancelar</a>
                                 </div>
                             </div>
                         </form>

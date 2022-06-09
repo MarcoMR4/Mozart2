@@ -32,24 +32,35 @@ if(!isset($_SESSION['username'])){
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="img/mozartIcon.png" type="image/x-icon">
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
             <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="principal.php">Conservatorio Mozart</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        
-                        <li><a class="dropdown-item" href="cerrar.php">Logout</a></li>
+            <div class="container">
+                <div class="row">
+                <div class="col">
+                 <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0 col-sm" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+                 </div>
+                 <div class="col">
+                 <a class="navbar-brand col-sm" href="principal.php">
+                  <img src="img/icono_mozart.png"  width="70px" alt="profile">
+                  Conservatorio Mozart
+                 </a>
+                 </div>
+                 <div class=" col-sm">
+                    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="editUser.php">Editar datos</a></li>
+                                <li><a class="dropdown-item" href="cerrar.php">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
+            </div>
         </nav>
         <div id="layoutSidenav">
             <div id="layoutSidenav_nav">
@@ -91,7 +102,7 @@ if(!isset($_SESSION['username'])){
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Compras</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="principal.html">Principal</a></li>
+                            <li class="breadcrumb-item"><a href="principal.php">Principal</a></li>
                             <li class="breadcrumb-item active">Compras</li>
                         </ol>
 
