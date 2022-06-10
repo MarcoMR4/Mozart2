@@ -55,7 +55,7 @@ $nik = $_SESSION['username'];
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="editUser.php">Editar datos</a></li>
-                                <li><a class="dropdown-item" href="cerrar.php">Cerrar sesión</a></li>
+                                <li><a class="dropdown-item" href="cerrar.php" id="cerrar">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -167,5 +167,7 @@ $nik = $_SESSION['username'];
         <script src="assets/demo/chart-bar-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/cerrar.js"> </script>
     </body>
 </html>
